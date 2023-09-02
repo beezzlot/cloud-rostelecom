@@ -85,7 +85,7 @@ resource "vkcs_compute_instance" "Web2" {
 
 resource "vkcs_lb_loadbalancer" "loadbalancer" {
   name = "loadbalancer"
-  vip_subnet_id = "${vkcs_networking_subnet.wsr-lb.id}"
+vip_subnet_id = "${vkcs_networking_subnet.wsr-lb.id}"
   tags = ["tag1"]
 }
 
@@ -95,7 +95,7 @@ resource "vkcs_networking_floatingip" "fip" {
 
 resource "vkcs_compute_floatingip_associate" "fip" {
  floating_ip = vkcs_networking_floatingip.fip.address
- instance_id = vkcs_networking_router.router.id
+ instance_id = vkcs_lb_loadbalancer.loadbalancer.vip_port_id
 }
 
 
